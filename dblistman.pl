@@ -1,9 +1,9 @@
 #!/usr/bin/perl -w
 # dblistman
-# Database List Manager: reads list subscribers from an SQL database and generates 
+# Database List Manager: reads list subscribers from an SQL database and generates
 # listserv subscription commands
 # 2005-07-22 pbc: Created based on gatorlink-do-personnel-sync
-# 2005-08-01 pbc: fixed problem with listname extraction from file names 
+# 2005-08-01 pbc: fixed problem with listname extraction from file names
 
 use strict;
 use DBI;
@@ -14,7 +14,7 @@ my ($sql_server, $sql_username, $sql_password, $line, $temp);
 my ($list_server, $list_owner, $list_owner_password);
 my ($body, $subscriber_line, $subscribers);
 
-open(AUTH, "/etc/mysql-maintenance.rc");
+open(AUTH, "mysql.rc");
 #open(AUTH, "mysql-maintenance.rc");
 while ($line = <AUTH>) {
     if (($temp) = ($line =~ /^mysql_server\t(.+)/)) {
@@ -29,7 +29,7 @@ while ($line = <AUTH>) {
 }
 close AUTH;
 
-open(CONFIG, "/usr/local/dblistman/etc/dblistman.rc");
+open(CONFIG, "dblistman.rc");
 while ($line = <CONFIG>) {
     if (($temp) = ($line =~ /^list_server\t(.+)/)) {
         $list_server = $1;
@@ -202,32 +202,32 @@ if ($opt->{s} || $opt->{U} || $opt->{A}) {
     if ($opt->{f}) {
 	open(SUBSCRIBER, $subscriberfile);
 	while ($subscriber_line = <SUBSCRIBER>) {
-	    $body .= $subscriber_line; 
+	    $body .= $subscriber_line;
 	    ++$subscribers;
 	}
 	close(SUBSCRIBER);
     } elsif ($opt->{d} && $opt->{q}) {
- 
+
 	# make sql connection
 	debug("connection to $sql_server as $sql_username");
 	$target = "DBI:mysql:$database:$sql_server";
 	debug("target is $target");
 	$dbh = DBI->connect($target, $sql_username, $sql_password) or die "Cannot connect to $target\n";
-	
+
 	# get Sql for list subscribers
 	($sql, @sql) = (split(/;/, read_file($sqlfile)));
 
 	debug($sql);
 	$sth = $dbh->prepare($sql);
 	$sth->execute;
-	
+
 	$subscribers = 0;
 	while (($subscriber_line) = $sth->fetchrow_array) {
-	    $body .= $subscriber_line . "\n"; 
+	    $body .= $subscriber_line . "\n";
 	    ++$subscribers;
-	    #debug("found subscriber: $subscriber_line");  
+	    #debug("found subscriber: $subscriber_line");
 	}
-	
+
     } else {
 	debug("I don't know what to do with this request.  It must be a bug.");
     }
@@ -247,11 +247,11 @@ if ($opt->{s} || $opt->{U} || $opt->{A}) {
 
 	# Run other sql commands from sql file if any exist
 	if ($opt->{o}) {
-	    foreach $sql (@sql) { 
+	    foreach $sql (@sql) {
 		debug($sql);
 		$sth = $dbh->prepare($sql);
 		if ($opt->{t}) {
-		    
+
 		} elsif ($opt->{c}) {
 		    $sth->execute;
 		}
@@ -294,7 +294,7 @@ sub mail_listserver {
 
 
     if ($opt->{t}) {
-	$top->print(\*STDOUT); 
+	$top->print(\*STDOUT);
     } elsif ($opt->{c}) {
 	# Send it:
 	open MAIL, "| /usr/lib/sendmail -t -oi -oem" or die "open: $!";
