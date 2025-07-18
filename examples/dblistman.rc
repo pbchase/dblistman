@@ -1,0 +1,3 @@
+list_server,         lists.example.org
+list_owner,          jane_doe@example.org
+list_owner_password, mysecret
