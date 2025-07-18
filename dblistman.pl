@@ -17,28 +17,28 @@ my ($body, $subscriber_line, $subscribers);
 open(AUTH, "mysql.rc");
 #open(AUTH, "mysql-maintenance.rc");
 while ($line = <AUTH>) {
-    if (($temp) = ($line =~ /^mysql_server\t(.+)/)) {
-        $sql_server = $1;
+    if (($temp) = ($line =~ /^mysql_server(\t|, {0,})(.+)/)) {
+        $sql_server = $2;
     }
-    if (($temp) = ($line =~ /^mysql_username\t(.+)/)) {
-        $sql_username = $1;
+    if (($temp) = ($line =~ /^mysql_username(\t|, {0,})(.+)/)) {
+        $sql_username = $2;
     }
-    if (($temp) = ($line =~ /^mysql_password\t(.+)/)) {
-        $sql_password = $1;
+    if (($temp) = ($line =~ /^mysql_password(\t|, {0,})(.+)/)) {
+        $sql_password = $2;
     }
 }
 close AUTH;
 
 open(CONFIG, "dblistman.rc");
 while ($line = <CONFIG>) {
-    if (($temp) = ($line =~ /^list_server\t(.+)/)) {
-        $list_server = $1;
+    if (($temp) = ($line =~ /^list_server(\t|, {0,})(.+)/)) {
+        $list_server = $2;
     }
-    if (($temp) = ($line =~ /^list_owner\t(.+)/)) {
-        $list_owner = $1;
+    if (($temp) = ($line =~ /^list_owner(\t|, {0,})(.+)/)) {
+        $list_owner = $2;
     }
-    if (($temp) = ($line =~ /^list_owner_password\t(.+)/)) {
-        $list_owner_password = $1;
+    if (($temp) = ($line =~ /^list_owner_password(\t|, {0,})(.+)/)) {
+        $list_owner_password = $2;
     }
 }
 close CONFIG;
@@ -297,10 +297,9 @@ sub mail_listserver {
 	$top->print(\*STDOUT);
     } elsif ($opt->{c}) {
 	# Send it:
-	open MAIL, "| /usr/lib/sendmail -t -oi -oem" or die "open: $!";
+	open MAIL, "| sendmail -t -oi -oem" or die "open: $!";
 	$top->print(\*MAIL);
 	close MAIL;
     }
 
 }
-
