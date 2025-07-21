@@ -1,3 +1,7 @@
+# dblistman 0.3.2 (released 2025-07-21)
+- Add NEWS.md (@pbchase)
+- Fix typo in CITATION.cff (@pbchase)
+
 # dblistman 0.3.1 (released 2025-07-17)
 - Add CITATION.cff (@pbchase)
 
