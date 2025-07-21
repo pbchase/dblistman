@@ -16,7 +16,7 @@ authors:
 repository-code:
   https://github.com/pbchase/dblistman
 abstract:
-  `dblistman.pl` simplifies data-driven management of Listserv subscribers. It uses the Listserv email interface to subscribe and unsubscribe list members or review a list. It uses data files and SQL query results as data sources for subscription and unsubscription requests. When unsubscribing, it can unsubscribe all members from a list, every person in a query result from a single list, or unsubscribe every person in a query result from all lists on the Listserv host.
+  dblistman.pl simplifies data-driven management of Listserv subscribers. It uses the Listserv email interface to subscribe and unsubscribe list members or review a list. It uses data files and SQL query results as data sources for subscription and unsubscription requests. When unsubscribing, it can unsubscribe all members from a list, every person in a query result from a single list, or unsubscribe every person in a query result from all lists on the Listserv host.
 keywords:
   - Listserv
   - subscriber management
