@@ -2,7 +2,7 @@
 # Visit https://bit.ly/cffinit to generate yours today!
 
 cff-version: 1.2.0
-title: A perl script for managing Listserv subscribers via email using SQL queries and data files as data sources. 
+title: dblistman - a perl script for managing Listserv subscribers via email using SQL queries and data files as data sources.
 message:
   If you use this software, please cite it with the metadata
   in CITATION.cff or https://doi.org/10.5281/zenodo.16271143
