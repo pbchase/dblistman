@@ -1,5 +1,7 @@
 # dblistman
 
+[![DOI](https://zenodo.org/badge/78542503.svg)](https://doi.org/10.5281/zenodo.16271143)
+
 `dblistman.pl` is a perl script for managing Listserv subscribers via email using SQL queries and data files as data sources. 
 
 ## Description

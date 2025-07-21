@@ -5,7 +5,7 @@ cff-version: 1.2.0
 title: A perl script for managing Listserv subscribers via email using SQL queries and data files as data sources. 
 message:
   If you use this software, please cite it with the metadata
-  in CITATION.cff
+  in CITATION.cff or https://doi.org/10.5281/zenodo.16271143
 type: software
 authors:
   - family-names: Chase
@@ -20,6 +20,9 @@ abstract:
 keywords:
   - Listserv
   - subscriber management
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.16271144
 license: Apache-2.0
 version: 0.3.2
 date-released: '2025-07-21'
